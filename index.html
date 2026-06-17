@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shaikh Suhana | AI Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:        #FAF7F2;
+      --surface:   #F2EDE4;
+      --border:    #E0D8CC;
+      --text:      #2C2417;
+      --muted:     #7A6E5F;
+      --coral:     #E8622A;
+      --coral-lt:  #F28155;
+      --coral-bg:  #FDF0EA;
+      --sand:      #C9B99A;
+      --ff-display: 'Playfair Display', serif;
+      --ff-body:    'Inter', sans-serif;
+      --ff-mono:    'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 1.2rem;
+      color: var(--coral);
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--coral); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 80px 5rem 4rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(232,98,42,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      font-family: var(--ff-mono);
+      font-size: 0.8rem;
+      color: var(--coral);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 2px;
+      background: var(--coral);
+    }
+    h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    h1 span { color: var(--coral); }
+    .hero-bio {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      font-family: var(--ff-body);
+    }
+    .btn-primary {
+      background: var(--coral);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--coral-lt); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--coral);
+      border: 1.5px solid var(--coral);
+    }
+    .btn-outline:hover { background: var(--coral-bg); }
+
+    /* Hero right — floating card */
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--coral) 0%, transparent 60%);
+      z-index: -1;
+      opacity: 0.25;
+    }
+    .card-label {
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      color: var(--coral);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat { padding: 1rem; background: var(--bg); border-radius: 8px; border: 1px solid var(--border); }
+    .stat-num {
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      color: var(--coral);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .stat-desc { font-size: 0.78rem; color: var(--muted); }
+    .tech-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill {
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      background: var(--coral-bg);
+      color: var(--coral);
+      border: 1px solid rgba(232,98,42,0.25);
+      border-radius: 20px;
+      padding: 0.3rem 0.75rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 5rem; }
+    section:nth-child(even) { background: var(--surface); }
+    .section-eyebrow {
+      font-family: var(--ff-mono);
+      font-size: 0.75rem;
+      color: var(--coral);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--text);
+      margin-bottom: 3rem;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; gap: 2rem; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-date {
+      font-family: var(--ff-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      padding-top: 0.25rem;
+      line-height: 1.6;
+    }
+    .exp-role {
+      font-family: var(--ff-display);
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+    .exp-company {
+      font-size: 0.85rem;
+      color: var(--coral);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .exp-bullets li {
+      font-size: 0.92rem;
+      color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--coral);
+      font-size: 0.8rem;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.75rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--coral), var(--coral-lt));
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(44,36,23,0.1); }
+    .project-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .project-name {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+      background: var(--surface);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.55rem;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .skill-group-title {
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      color: var(--coral);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .skill-list li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .skill-list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--coral);
+      border-radius: 50%;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+
+    /* ── CONTACT ── */
+    .contact-inner {
+      max-width: 600px;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--coral); color: var(--coral); background: var(--coral-bg); }
+    .contact-link-icon { font-size: 1.3rem; }
+    .contact-link-label { font-size: 0.75rem; color: var(--muted); font-family: var(--ff-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--sand);
+      border-top: 1px solid var(--border);
+      font-family: var(--ff-mono);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding: 80px 1.5rem 3rem; gap: 2.5rem; }
+      section { padding: 4rem 1.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1rem; }
+    }
+
+    /* scroll reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Suhana Shaikh</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">AI Developer · Pune, India</div>
+    <h1>Building <span>Intelligent</span> Systems That Work</h1>
+    <p class="hero-bio">
+      Computer Science postgraduate specialising in LLM applications, AI agents, and Python automation.
+      I turn complex AI ideas into real, deployable products — from multi-agent workflows to smart web apps.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary">✉ Get In Touch</a>
+      <a href="#projects" class="btn btn-outline">View Projects</a>
+    </div>
+  </div>
+
+  <div class="hero-card reveal">
+    <div class="card-label">// At a Glance</div>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-desc">AI Projects Built</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">60%</div>
+        <div class="stat-desc">Content Time Saved via Automation</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-desc">Industry Internships</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">M.Sc</div>
+        <div class="stat-desc">Computer Science, 2025</div>
+      </div>
+    </div>
+    <div class="tech-pills">
+      <span class="pill">LangGraph</span>
+      <span class="pill">LangChain</span>
+      <span class="pill">OpenAI API</span>
+      <span class="pill">Python</span>
+      <span class="pill">Streamlit</span>
+      <span class="pill">AWS</span>
+      <span class="pill">SQL</span>
+      <span class="pill">RAG</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow">// Work History</div>
+  <h2>Experience</h2>
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-date">Aug 2025 – Present<br/>Pune, India</div>
+      <div>
+        <div class="exp-role">Analyst</div>
+        <div class="exp-company">CandorWorks</div>
+        <ul class="exp-bullets">
+          <li>Conduct research and analysis on companies, industries, and market trends for business intelligence.</li>
+          <li>Organise, validate, and maintain structured datasets to ensure data accuracy and consistency.</li>
+          <li>Utilise Excel and analytical workflows for data cleaning, reporting, and operational analysis.</li>
+          <li>Collaborate with internal teams to deliver data-driven insights and improve research efficiency.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">Feb 2025 – Jul 2025<br/>Pune, India</div>
+      <div>
+        <div class="exp-role">AI Developer Intern</div>
+        <div class="exp-company">Applied AI Consulting LLP</div>
+        <ul class="exp-bullets">
+          <li>Developed and deployed LangGraph-based multi-agent LLM workflows for automation and intelligent task orchestration.</li>
+          <li>Built a "Chat with Database" AI agent enabling natural language queries on structured SQL data.</li>
+          <li>Integrated Datadog and AWS OpenSearch for real-time log monitoring and analysis.</li>
+          <li>Engineered a Scrapy-powered agent for dynamic event extraction and lead intelligence.</li>
+          <li>Automated AI-generated blog and social media workflows, reducing manual content creation time by 60%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">Feb 2025 – Jul 2025<br/>Virtual</div>
+      <div>
+        <div class="exp-role">Full Stack Python Developer Intern</div>
+        <div class="exp-company">Anudip Foundation</div>
+        <ul class="exp-bullets">
+          <li>Developed web applications using Python, HTML, CSS, and SQL.</li>
+          <li>Worked on backend development, database integration, and full-stack application workflows.</li>
+          <li>Collaborated on mini-projects involving real-world full-stack development practices.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">// What I've Built</div>
+  <h2>Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-icon">🤖</div>
+      <div class="project-name">Customer Support Chatbot</div>
+      <p class="project-desc">
+        AI-powered chatbot using LangChain and Streamlit to automate support interactions.
+        Features retrieval-based QA on PDF product documents, real-time chat, and session history.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">RAG</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🎨</div>
+      <div class="project-name">AI Ad Creator</div>
+      <p class="project-desc">
+        Streamlit web app that generates ad copy and image creatives using GPT and DALL·E.
+        Enables dynamic caption and image generation tailored to product, audience, and platform.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">OpenAI API</span>
+        <span class="tag">DALL·E</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">📊</div>
+      <div class="project-name">Data Analytics — Accenture Simulation</div>
+      <p class="project-desc">
+        Analysed 7 datasets using SQL, Excel, and Python to uncover content trends. Designed interactive
+        Power BI dashboards with DAX for strategic decision-making insights.
+      </p>
+      <div class="project-tags">
+        <span class="tag">SQL</span>
+        <span class="tag">Python</span>
+        <span class="tag">Power BI</span>
+        <span class="tag">Excel</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🗄️</div>
+      <div class="project-name">Chat with Database Agent</div>
+      <p class="project-desc">
+        Natural language interface over structured SQL data using an AI agent.
+        Users ask questions in plain English; the agent translates and returns live results.
+      </p>
+      <div class="project-tags">
+        <span class="tag">LangGraph</span>
+        <span class="tag">SQL</span>
+        <span class="tag">OpenAI API</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">📰</div>
+      <div class="project-name">Automated Content Workflow</div>
+      <p class="project-desc">
+        AI-driven pipeline for generating and publishing blog posts and social media content automatically via Postiz API.
+        Reduced manual content creation time by 60%.
+      </p>
+      <div class="project-tags">
+        <span class="tag">LangGraph</span>
+        <span class="tag">Postiz API</span>
+        <span class="tag">Automation</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🕷️</div>
+      <div class="project-name">Lead Intelligence Scraper Agent</div>
+      <p class="project-desc">
+        Scrapy-powered AI agent that dynamically extracts event details from the web for lead generation,
+        integrated with Datadog and AWS OpenSearch for real-time monitoring.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Scrapy</span>
+        <span class="tag">AWS OpenSearch</span>
+        <span class="tag">Datadog</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">// Toolkit</div>
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Programming & Databases</div>
+      <ul class="skill-list">
+        <li>Python</li>
+        <li>SQL</li>
+        <li>MySQL</li>
+        <li>PostgreSQL</li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">AI / LLM Technologies</div>
+      <ul class="skill-list">
+        <li>LangGraph</li>
+        <li>LangChain</li>
+        <li>OpenAI API</li>
+        <li>Prompt Engineering</li>
+        <li>RAG</li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Frameworks & Tools</div>
+      <ul class="skill-list">
+        <li>Streamlit</li>
+        <li>Scrapy</li>
+        <li>Docker</li>
+        <li>Git / GitHub</li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Cloud & Monitoring</div>
+      <ul class="skill-list">
+        <li>AWS OpenSearch</li>
+        <li>Datadog</li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Data & Visualisation</div>
+      <ul class="skill-list">
+        <li>Pandas</li>
+        <li>Power BI</li>
+        <li>Excel</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">// Let's Connect</div>
+  <h2>Get In Touch</h2>
+  <div class="contact-inner reveal">
+    <p style="color:var(--muted); margin-bottom: 0.5rem; font-size: 0.95rem;">
+      I'm actively looking for AI Developer / Python Developer roles in India.
+      If you have an opportunity or just want to say hello — I'd love to hear from you.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:suhanashaikh358@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉️</span>
+        <div>
+          <div class="contact-link-label">Email</div>
+          suhanashaikh358@gmail.com
+        </div>
+      </a>
+      <a href="https://in.linkedin.com/in/suhashaikh" target="_blank" class="contact-link">
+        <span class="contact-link-icon">💼</span>
+        <div>
+          <div class="contact-link-label">LinkedIn</div>
+          Suhana Shaikh
+        </div>
+      </a>
+      <a href="https://github.com/your-github" target="_blank" class="contact-link">
+        <span class="contact-link-icon">🐙</span>
+        <div>
+          <div class="contact-link-label">GitHub</div>
+          github.com/your-github
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built with intention · Shaikh Suhana · 2025
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
