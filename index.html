@@ -269,6 +269,15 @@
       background: linear-gradient(90deg, var(--coral), var(--coral-lt));
     }
     .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(44,36,23,0.1); }
+    .project-thumb {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+      display: block;
+    }
     .project-icon {
       font-size: 1.8rem;
       margin-bottom: 1rem;
@@ -502,6 +511,56 @@
   <div class="section-eyebrow">// What I've Built</div>
   <h2>Projects</h2>
   <div class="projects-grid">
+
+    <div class="project-card reveal" onclick="window.open('https://github.com/shaikhsuhana/hr-attrition-analysis', '_blank')">
+      <img src="https://raw.githubusercontent.com/shaikhsuhana/hr-attrition-analysis/main/charts/attrition_by_overtime.png" alt="Attrition rate by overtime" class="project-thumb">
+      <div class="project-icon">📉</div>
+      <div class="project-name">Employee Attrition Analysis</div>
+      <p class="project-desc">
+        Analysed 1,200 employee records to find that overtime workers leave at 2x the rate of
+        others, with 45% of attrition happening in the first two years — and flagged the 103
+        currently at-risk employees for targeted retention.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">Matplotlib</span>
+        <span class="tag">Statistical Analysis</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" onclick="window.open('https://github.com/shaikhsuhana/retail-sales-performance', '_blank')">
+      <img src="https://raw.githubusercontent.com/shaikhsuhana/retail-sales-performance/main/charts/revenue_by_region.png" alt="Revenue by region" class="project-thumb">
+      <div class="project-icon">🛒</div>
+      <div class="project-name">Retail Sales Performance</div>
+      <p class="project-desc">
+        Built a formula-driven Excel workbook analysing 5,200+ transactions across regions and
+        channels. Found the South region generates under half of North's revenue at identical
+        margins — a demand problem, not a pricing one.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Excel</span>
+        <span class="tag">SUMIF/Pivot Logic</span>
+        <span class="tag">Power BI-ready</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" onclick="window.open('https://github.com/shaikhsuhana/marketing-funnel-roi', '_blank')">
+      <img src="https://raw.githubusercontent.com/shaikhsuhana/marketing-funnel-roi/main/charts/roi_by_campaign.png" alt="ROI by campaign" class="project-thumb">
+      <div class="project-icon">📣</div>
+      <div class="project-name">Marketing Campaign ROI Analysis</div>
+      <p class="project-desc">
+        SQL analysis of $56K in campaign spend across 6 campaigns and 5 channels. Found Social
+        was losing money (-40.8% ROI) while Referral returned 2,314% ROI — with a funnel
+        breakdown pinpointing exactly where the losing campaign drops off.
+      </p>
+      <div class="project-tags">
+        <span class="tag">SQL</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">Funnel Analysis</span>
+        <span class="tag">ROI/CAC</span>
+      </div>
+    </div>
 
     <div class="project-card reveal">
       <div class="project-icon">📊</div>
